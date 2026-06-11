@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TaxiRomania — Taxi Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🚕</span>
+      <strong>TaxiRomania</strong>
+      <span class="tagline">— Un singur formular, un singur click.</span>
+    </div>
+
+    <div class="auth">
+      <div class="langbox">
+        <label for="langSelect" class="muted" style="margin-right:6px;">Language</label>
+        <select id="langSelect">
+          <option value="en">English (€)</option>
+          <option value="ro">Română (RON)</option>
+        </select>
+      </div>
+
+      
+      <div id="authLoggedOut">
+        <button id="openLogin" class="btn ghost">Log in</button>
+        <button id="openSignup" class="btn primary">Sign up</button>
+      </div>
+      <div id="authLoggedIn" class="hidden">
+        <span id="whoami" class="who"></span>
+        <button id="logoutBtn" class="btn danger">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  
+  <main class="container row">
+    
+    <section class="card card-book">
+      <h2 id="titleBook">Book a ride</h2>
+
+      <label id="lblPickup">Pickup</label>
+      <input id="pickup" placeholder="e.g. Belgrade, Slavija" />
+
+      <label id="lblDropoff">Destination</label>
+      <input id="dropoff" placeholder="e.g. New Belgrade, Blok 63" />
+
+      <label id="lblService">Service</label>
+      <select id="service">
+        <option>Standard</option>
+        <option>Premium</option>
+      </select>
+
+      <label id="lblPay">Pay with</label>
+      <select id="payMethod">
+        <option>Card</option>
+        <option>Cash</option>
+      </select>
+
+      <button id="getPrice" class="btn blue" type="button">Get price</button>
+      <p id="quoteText">Distance: — km, Price: —</p>
+
+      <button id="bookRide" class="btn green" type="button" disabled>Confirm & Book</button>
+
+      
+      <section id="paymentSection" class="hidden">
+        <h3 id="securePayTitle">Secure payment</h3>
+        <p class="muted">
+          Test card: <code>4242 4242 4242 4242</code> • any future date and CVC.
+        </p>
+
+        <label id="lblCardNum">Card number</label>
+        <input id="cardNumber" value="4242 4242 4242 4242" />
+
+        <div class="pay-row">
+          <div>
+            <label id="lblExpiry">Expiry</label>
+            <input id="expiry" value="12/30" />
+          </div>
+          <div>
+            <label id="lblCvc">CVC</label>
+            <input id="cvc" value="123" />
+          </div>
+        </div>
+
+        <button id="confirmPayment" class="btn primary" type="button">Confirm payment</button>
+        <p id="payResult" class="muted"></p>
+      </section>
+    </section>
+
+    
+    <section class="card card-history">
+      <div class="card-head">
+        <h2 id="historyTitle">Your rides</h2>
+      </div>
+
+     
+      <div class="filters">
+        <select id="statusFilter" class="fit">
+          <option id="optAll" value="all">All</option>
+          <option id="optBooked" value="booked">Booked</option>
+          <option id="optPaid" value="paid">Paid</option>
+          <option id="optCanceled" value="canceled">Canceled</option>
+        </select>
+
+        <input id="dateFrom" type="date" />
+        <input id="dateTo" type="date" />
+        <button id="findBtn" class="btn ghost sm" type="button">Find</button>
+      </div>
+
+      <div id="ridesEmpty" class="muted">No rides yet.</div>
+      <div id="ridesList" class="rides"></div>
+    </section>
+  </main>
+
+  
+  <dialog id="dlgLogin" class="modal">
+    <form method="dialog" class="modal-body">
+      <h3 id="loginTitle">Log in</h3>
+      <label id="loginEmailLbl">Email</label>
+      <input id="loginEmail" type="email" placeholder="user@example.com" />
+      <label id="loginPassLbl">Password</label>
+      <input id="loginPass" type="password" placeholder="••••••••" />
+      <div class="row gap">
+        <button id="doLogin" class="btn primary" value="ok">Log in</button>
+        <button class="btn ghost" value="cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlgSignup" class="modal">
+    <form method="dialog" class="modal-body">
+      <h3 id="signupTitle">Sign up</h3>
+      <label id="signupEmailLbl">Email</label>
+      <input id="signupEmail" type="email" placeholder="user@example.com" />
+      <label id="signupPassLbl">Password</label>
+      <input id="signupPass" type="password" placeholder="min 4 chars" />
+      <div class="row gap">
+        <button id="doSignup" class="btn primary" value="ok">Create account</button>
+        <button class="btn ghost" value="cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
